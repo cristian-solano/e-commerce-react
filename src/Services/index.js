@@ -9,6 +9,8 @@ const getConfig = () => ({
     }
 })
 
+
+
 export const loginUser = async(data) => { 
     const req = await axios.post(`${URL}/login/`, data)
     return req.data
@@ -20,5 +22,11 @@ export const getProducts = async () => {
 }
 
 export const getProductById = async (id) => {
-    const req = await axios.get(`${URL}/products/${id}`)
+    const req = await axios.get(`${URL}/products/${id}/`, getConfig())
+    return req.data
+}
+
+export const getFilterCategories = async ( ) => {
+    const req = await axios.get(`${URL}/categories/`, getConfig())
+    return req.data
 }

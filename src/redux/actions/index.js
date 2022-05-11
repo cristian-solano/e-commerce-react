@@ -1,9 +1,14 @@
-import { getProductById, getProducts } from "../../Services"
+import { getFilterCategories, getProductById, getProducts } from "../../Services"
 
 export const actions = {
     productSetAll: "@product/setAll",
-    productInfoSetById: "@product/setById"
+    productInfoSetById: "@product/setById",
+    categoriesSetValues: "@categories/setValues"
 }
+
+//! const dispatch = useDispatch()
+//? dispatch( {type: "@product/setAll", payload: data})
+//* dispatch (productSetAll (data))
 
 export const productSetAll = (data) => ({
     type: actions.productSetAll,
@@ -15,6 +20,10 @@ export const setProductInfo = (data) => ({
     payload: data
 })
 
+export const setCategories = (data) => ({
+    type: actions.categoriesSetValues,
+    payload: data
+})
 
 export const setProductThunk = () => {
     return dispatch => {
@@ -31,6 +40,15 @@ export const setInfoProductThunk = (id) => {
         getProductById(id)
         .then((res) => {
             dispatch(setProductInfo(res))
+        })
+    }
+}
+
+export const setCategoriesThunk = () => {
+    return (dispatch) => {
+        getFilterCategories()
+        .then((res) => {
+            return dispatch(setCategories(res))
         })
     }
 }
