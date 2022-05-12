@@ -1,9 +1,10 @@
-import { getFilterCategories, getProductById, getProducts } from "../../Services"
+import { getFilterCategories, getFilterProducts, getProductById, getProducts, getProductsFromCart } from "../../Services"
 
 export const actions = {
     productSetAll: "@product/setAll",
     productInfoSetById: "@product/setById",
-    categoriesSetValues: "@categories/setValues"
+    categoriesSetValues: "@categories/setValues",
+    cartSetProducts: "@cart/setProducts"
 }
 
 //! const dispatch = useDispatch()
@@ -25,15 +26,26 @@ export const setCategories = (data) => ({
     payload: data
 })
 
-export const setProductThunk = () => {
-    return dispatch => {
-        getProducts()
-        .then((res) =>  {
-            return dispatch(productSetAll(res))
-        })
+export const setProductsToCart = (data) => ({
+    type: actions.cartSetProducts,
+    payload: data
+})
+
+export const setProductThunk = (category) => {
+    return (dispatch) => {
+        if(category){
+            getFilterProducts(category)
+                .then((res) => {
+                    dispatch(productSetAll(res))
+                })
+        } else {
+            getProducts()
+                .then((res) => {
+                    dispatch(productSetAll(res))
+                })
+        }
     }
 }
-
 
 export const setInfoProductThunk = (id) => {
     return (dispatch) => {
@@ -50,6 +62,15 @@ export const setCategoriesThunk = () => {
         .then((res) => {
             return dispatch(setCategories(res))
         })
+    }
+}
+
+export const setCartProductsThunk = () => {
+    return (dispatch) => {
+        getProductsFromCart()
+            .then((res) => {
+                return dispatch(setProductsToCart(res))
+            })
     }
 }
 
