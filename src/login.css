@@ -1,11 +1,11 @@
 .forms {
-    background-color: rgb(207, 211, 151);
+    background-color: #cfd397;
     height: 900px;
 }
 
 
 .container {
-    background-color: rgb(221, 208, 173);;
+    background-color: #ddd0ad;
     width: 500px;
     height: 500px;
     padding: 20px 10px 10px 10px;
@@ -36,3 +36,7 @@
     text-decoration: underline;
 
 }
+
+/* container { */
+    /* background-color: #f5e0c7;
+} */

@@ -1,4 +1,4 @@
-import { deleteProductFromCart, getFilterCategories, getFilterProducts, getProductById, getProducts, getProductsFromCart } from "../../Services"
+import { deleteProductFromCart, getFilterCategories, getFilterProducts, getProductById, getProducts, getProductsFromCart, signUpUser } from "../../Services"
 
 export const actions = {
     productSetAll: "@product/setAll",
@@ -83,6 +83,15 @@ export const deleteCartProductThunk = (id) => {
             .then(() => {
                 return dispatch(setCartProductsThunk())
             })
+    }
+}
+
+export const signUpThunk = (data) => {
+    return (dispatch) => {
+        signUpUser(data) 
+        .then(() => {
+            console.log('usuario creado')
+        })
     }
 }
 

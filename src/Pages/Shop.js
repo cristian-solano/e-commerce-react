@@ -25,8 +25,8 @@ const Shop = () => {
     const categoriesList = categoriesArr.map(item => <button type="button" className="btn btn-warning" style={{margin: '5px'}} 
             key={item.id} onClick={() => setCurrentCategory(item.id)} >{item.name}</button>)
     return (
-        <div>
-            <h1>Welcome to Store Accesories </h1>
+        <div style={{backgroundColor: "#f5e0c7"}}>
+            <h1 style={{padding: "15px"}}>Welcome to Store Accesories </h1>
             <button type="button" className="btn btn-dark" onClick={() => setCurrentCategory('')} style={{margin: '5px'}}>
                 All products
             </button>

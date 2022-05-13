@@ -1,5 +1,5 @@
-import { useState } from "react"
-import { useEffect } from "react"
+
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import CreateUser from "../Components/CreateUser"
 import { signUpUser } from "../Services"
@@ -8,32 +8,43 @@ const SignUp = () => {
 
     const navigate = useNavigate()
     const [newUser, setNewUser] = useState({})
-    const condition = false
+    const [user, setUser] = useState({})
+
+    
 
 
-    useEffect(() => {
-       if (newUser.email) {
-            signUpUser()
-            .then((res) => {
-                localStorage.setItem("token",res.access)
-            })
-            .then(() => {
-                navigate('/shop')
-            }) 
+    useEffect(() => {   
+       if (newUser.first_name) {
+            
             
         } else {
             console.log('no hay valores')
         }
+        signUpUser(newUser)
+            .then((res) => {
+                console.log(res)
+                navigate('/login')
+                
+            }) 
+        console.log(newUser)
         
     }, [newUser, navigate])
 
+    
+
     const handlerOnCreateUser = (e) => {
         setNewUser(e)
+        setUser(e)
+        
+        console.log(e)
     }
+
+    console.log('Usuario:', user )
 
     return(
         <div>
-           {condition ? <p>Cargando</p> : <CreateUser  onCreate={handlerOnCreateUser}/> } 
+            
+            <CreateUser  onCreate={handlerOnCreateUser}/>
         </div>
     )
 }

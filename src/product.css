@@ -1,0 +1,32 @@
+.product {
+    display: grid;
+    /* grid-template-rows: minmax(400px, auto); */
+    grid-template-columns: repeat(5, 1fr);
+    padding-left: 100px;
+    gap: 12px
+}
+.product > p {
+    font-size: 20px;
+    padding: 30px;
+    font-family: Optima, sans-serif;
+    
+}
+.product > p:hover {
+    color: hwb(38 2% 65%);
+    
+}
+
+.product > img {
+    width: auto;
+    padding-top: 10px;
+}
+.product > img:hover {
+    opacity: 0.4;
+}
+
+@media (max-width: 600px) {
+    .product {
+      display: flex;
+      flex-direction: column;
+    }
+}

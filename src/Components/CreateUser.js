@@ -1,21 +1,23 @@
 import { useForm } from "react-hook-form"
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { signUpThunk } from "../redux/actions";
 
 const CreateUser = ({onCreate}) => {
 
     const {register, handleSubmit} = useForm();
     const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const onSubmit = (res) => {
-         onCreate(res)
-    }
-
-    const handlerOnRegister = (name) => {
-        navigate('/shop')
+        onCreate(res)
+        dispatch(signUpThunk(res))
+        navigate('/login')
        
+
     }
 
-
+    
     return (
         <div className="content" style={{margin: "30px"}}>
             <div className="container">
@@ -39,7 +41,7 @@ const CreateUser = ({onCreate}) => {
                     </div>
                     <br />
                 
-                    <button onClick={handlerOnRegister} className="btn btn-dark">Sign in</button>
+                    <button  className="btn btn-dark">Sign in</button>
                 </form>
             </div>
        </div>
