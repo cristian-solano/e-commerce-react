@@ -1,10 +1,11 @@
-import { getFilterCategories, getFilterProducts, getProductById, getProducts, getProductsFromCart } from "../../Services"
+import { deleteProductFromCart, getFilterCategories, getFilterProducts, getProductById, getProducts, getProductsFromCart } from "../../Services"
 
 export const actions = {
     productSetAll: "@product/setAll",
     productInfoSetById: "@product/setById",
     categoriesSetValues: "@categories/setValues",
-    cartSetProducts: "@cart/setProducts"
+    cartSetProducts: "@cart/setProducts",
+    
 }
 
 //! const dispatch = useDispatch()
@@ -30,6 +31,8 @@ export const setProductsToCart = (data) => ({
     type: actions.cartSetProducts,
     payload: data
 })
+
+
 
 export const setProductThunk = (category) => {
     return (dispatch) => {
@@ -74,6 +77,14 @@ export const setCartProductsThunk = () => {
     }
 }
 
+export const deleteCartProductThunk = (id) => {
+    return (dispatch) => {
+        deleteProductFromCart(id)
+            .then(() => {
+                return dispatch(setCartProductsThunk())
+            })
+    }
+}
 
 
 /*

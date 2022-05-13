@@ -52,3 +52,13 @@ export const getProductsFromCart = async () => {
     const req = await axios.get(`${URL}/cart/`, getConfig())
     return req.data
 }
+
+export const deleteProductFromCart = async(id) => {
+    const req = await axios.delete(`${URL}/cart/${id}/remove_item/`, getConfig())
+    return req.data
+}
+
+export const postCheckOut = async () => {
+    const req = await axios.post(`${URL}/cart/buy/`, {} , getConfig())
+    return req.data
+}
