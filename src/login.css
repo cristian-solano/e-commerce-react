@@ -1,0 +1,38 @@
+.forms {
+    background-color: rgb(207, 211, 151);
+    height: 900px;
+}
+
+
+.container {
+    background-color: rgb(221, 208, 173);;
+    width: 500px;
+    height: 500px;
+    padding: 20px 10px 10px 10px;
+}
+
+.pd {
+    padding-top: 30px;
+}
+.items {
+    display: flexbox;
+    flex-direction: column;
+    padding: 60px;
+    padding-bottom: 5px;
+}
+
+.items > label,
+.items > input {
+    width: 350px;
+    margin: 5px;
+}
+
+.decorate {
+    text-decoration: none;
+    color: black;
+}
+.decorate:hover {
+    color: rgba(15, 16, 63, 0.541);
+    text-decoration: underline;
+
+}

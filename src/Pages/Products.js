@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { useParams } from "react-router-dom"
 import { setInfoProductThunk } from "../redux/actions"
 import { addProductToCart } from "../Services"
+import '../shop.css'
+
 
 const Product = () => {
 
@@ -45,11 +47,11 @@ const Product = () => {
             
           <h1>{product.name}</h1>
           <div>
-          <button onClick={decrement}>-</button>
+          <button onClick={decrement} className="btn btn-outline-danger less">-</button>
           {quantity}
-          <button onClick={() => setQuantity(quantity + 1)}>+</button>
+          <button onClick={() => setQuantity(quantity + 1)} className="btn btn-outline-info plus">+</button>
             <br />
-          <button onClick={() => setConfirm(true)}>Add to Cart</button>
+          <button onClick={() => setConfirm(true)} className="btn btn-outline-warning">Add to Cart</button>
           </div>
           <p>{product.description}</p>
           {product.images?.map((item) => <img style={{width: '300px', border: '1px solid black'}}src={item.url} alt='' key={item.url} />)}

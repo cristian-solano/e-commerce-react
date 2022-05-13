@@ -22,11 +22,11 @@ const Shop = () => {
    
 
     const list = productArr.map((item) => <ProductItem key={item.id} productObj={item} />)
-    const categoriesList = categoriesArr.map(item => <button type="button" className="btn btn-primary" style={{margin: '5px'}} 
+    const categoriesList = categoriesArr.map(item => <button type="button" className="btn btn-warning" style={{margin: '5px'}} 
             key={item.id} onClick={() => setCurrentCategory(item.id)} >{item.name}</button>)
     return (
         <div>
-            <h1>Esta es mi Tienda</h1>
+            <h1>Welcome to Store Accesories </h1>
             <button type="button" className="btn btn-dark" onClick={() => setCurrentCategory('')} style={{margin: '5px'}}>
                 All products
             </button>
