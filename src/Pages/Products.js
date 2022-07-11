@@ -20,7 +20,7 @@ const Product = () => {
 
     const [quantity, setQuantity] = useState(0)
     const [confirm, setConfirm] = useState(false)
-    const [cart, setCart] = useState(false)
+    
     
     
 
