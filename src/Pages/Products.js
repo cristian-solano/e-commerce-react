@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { setInfoProductThunk,  setProductThunk } from "../redux/actions"
 import { addProductToCart } from "../Services"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons"
 import '../shop.css'
 
 
@@ -13,10 +15,13 @@ const Product = () => {
     const dispatch = useDispatch()
     const product = useSelector(state => state.productsInfo)
     const filterProducts = useSelector(state => state.products)
+    const navigate = useNavigate()
 
 
     const [quantity, setQuantity] = useState(0)
     const [confirm, setConfirm] = useState(false)
+    const [cart, setCart] = useState(false)
+    
     
 
     useEffect(() => {
@@ -41,16 +46,12 @@ const Product = () => {
         if(product.category){
             dispatch(setProductThunk(product.category.id))
             
-            // setFiltProd(filtProd.filter((item) => item.id !== product.id))
+           
         }
         
     }, [dispatch, product])
 
-    // useEffect(() => {
-    //     if(filterProducts){
-    //         setFiltProd(filtProd.filter((item) => item.id !== product.id))
-    //     } 
-    // }, [filtProd, id, product, filterProducts])
+   
 
 
     const decrement = () => {
@@ -58,11 +59,24 @@ const Product = () => {
             setQuantity(quantity - 1)
         }
     }
+
+    const handlerOnCart = (key) => {
+        navigate('/cart', key.id)
+    }
+    
     
    
     return (
         <div style={{backgroundColor: "#f5e0c7"}}>
-          <h1>{product.name}</h1>
+          <div className="row">
+              <div className="col-md-12">
+                <h1>{product.name}</h1>
+              </div>
+              <div className="col-md-1">
+                <button onClick={handlerOnCart} className="btn btn-outline-dark" ><FontAwesomeIcon icon={faCartShopping}/></button>
+              </div>
+           </div>
+          
           
           <div>
           <button onClick={decrement} className="btn btn-outline-danger less">-</button>
